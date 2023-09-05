@@ -1,6 +1,7 @@
-package com.felipecpdev.certificatewithjasperreport.controllers;
+package com.felipecpdev.jasperreportexamples.controllers;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/v1/report")
@@ -25,9 +25,11 @@ public class CertificateController {
     private static final String CLASSPATH = "classpath:";
     private static final String TEMPLATE_REPORTS = "templates/reports/";
 
+    private final ResourceLoader resourceLoader;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+    public CertificateController(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     @GetMapping(value = "/download-certificate", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<Resource> downloadReport() throws JRException, IOException {
@@ -36,13 +38,33 @@ public class CertificateController {
             File file = ResourceUtils.getFile(CLASSPATH + TEMPLATE_REPORTS + "certificate-udemy-example.jrxml");
             Resource imageResource = resourceLoader.getResource(CLASSPATH + "static/img/" + "udemy-logo.png");
 
+            //compila el archivo
             JasperReport compileReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
             String nameStudent = "Felipe Contreras";
             String logoUdemy = imageResource.getURL().getPath();
+            String courseTitle = "Master Spring Data JPA with Hibernate: E-Commerce Project";
+            String uuid = UUID.randomUUID().toString();
+            String duration = "20 horas";
+            Date now = new Date();
+            String urlCert = "ude.my/".concat(uuid);
+            String ref = "004";
 
+            //ejemplo de una lista simple con JRBeanCollectionDataSource
+            List<String> instructorsNames = List.of("Ramesh Fadatare", "Pablo Contreras");
+            JRBeanCollectionDataSource instructorsCollection =
+                    new JRBeanCollectionDataSource(instructorsNames);
+
+            //parametros establecidos en el reporte
             parameters.put("NAME_STUDENT", nameStudent);
             parameters.put("LOGO_UDEMY", logoUdemy);
+            parameters.put("COURSE_TITLE", courseTitle);
+            parameters.put("UUID", uuid);
+            parameters.put("COURSE_DATE", now);
+            parameters.put("DURATION", duration);
+            parameters.put("URL", urlCert);
+            parameters.put("REF", ref);
+            parameters.put("INSTRUCTORS", instructorsCollection);
 
             // Generar el informe
             JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, parameters, new JREmptyDataSource());

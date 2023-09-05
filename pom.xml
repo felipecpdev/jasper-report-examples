@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.felipecpdev</groupId>
-    <artifactId>certificate-with-jasper-report</artifactId>
+    <artifactId>jasper-report-examples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>certificate-with-jasper-report</name>
-    <description>certificate-with-jasper-report</description>
+    <name>jasper-report-examples</name>
+    <description>jasper-report-examples</description>
     <properties>
         <java.version>20</java.version>
     </properties>
