@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -36,16 +37,19 @@ public class ReportController {
             Map<String, Object> parameters = new HashMap<>();
             File file = ResourceUtils.getFile(CLASSPATH + TEMPLATE_REPORTS + "certificate-udemy-example.jrxml");
             Resource imageResource = resourceLoader.getResource(CLASSPATH + "static/img/" + "udemy-logo.png");
-
+            Date now = new Date();
             //compila el archivo
             JasperReport compileReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd-HH_mm_ss");
+            String formattedDate = sdf.format(now);
 
             String nameStudent = "Felipe Contreras";
             String logoUdemy = imageResource.getURL().getPath();
             String courseTitle = "Master Spring Data JPA with Hibernate: E-Commerce Project";
             String uuid = UUID.randomUUID().toString();
             String duration = "20 horas";
-            Date now = new Date();
             String urlCert = "ude.my/".concat(uuid);
             String ref = "004";
 
@@ -54,6 +58,8 @@ public class ReportController {
             JRBeanCollectionDataSource instructorsCollection =
                     new JRBeanCollectionDataSource(instructorsNames);
 
+            //String filename = "CU_".concat(nameStudent).concat("_").concat(formattedDate);
+            String filename = "CU-".concat(uuid);
             //parametros establecidos en el reporte
             parameters.put("NAME_STUDENT", nameStudent);
             parameters.put("LOGO_UDEMY", logoUdemy);
@@ -73,7 +79,7 @@ public class ReportController {
             ByteArrayResource resource = new ByteArrayResource(data);
             // Configurar las cabeceras de la respuesta
             HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=certificate.pdf");
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=".concat(filename).concat(".pdf"));
             // Crea el ResponseEntity y devolverlo
             return ResponseEntity
                     .ok()

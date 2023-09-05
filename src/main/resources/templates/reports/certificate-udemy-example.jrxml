@@ -51,7 +51,7 @@
                 <textElement>
                     <font fontName="SansSerif"/>
                 </textElement>
-                <text><![CDATA[Url del certificado:]]></text>
+                <text><![CDATA[Url del certificado]]></text>
             </staticText>
             <staticText>
                 <reportElement x="550" y="70" width="111" height="21" forecolor="#AAADAF" uuid="11164a38-5ea2-45fc-8783-d14e8eb3f723"/>
@@ -95,7 +95,7 @@
                 <textElement>
                     <font size="19"/>
                 </textElement>
-                <text><![CDATA[Instructores:]]></text>
+                <text><![CDATA[Instructores]]></text>
             </staticText>
             <textField textAdjust="ScaleFont">
                 <reportElement x="25" y="0" width="768" height="161" uuid="bd97f759-fb98-45a5-842f-075fec3d90b1"/>
