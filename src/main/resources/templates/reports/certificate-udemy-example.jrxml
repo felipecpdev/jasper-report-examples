@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="certificate-udemy-example" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6cb57d3-6f99-4a26-b8f6-c8f6ad0ba72a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="LOGO_UDEMY" class="java.lang.String"/>
+	<parameter name="NAME_STUDENT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band height="555" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="1" y="10" width="800" height="530" backcolor="#F8F9FB" uuid="d24a34c3-f886-41c6-b58b-7573d536164f"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="480" y="30" width="231" height="20" uuid="eb1eb512-1be1-458e-8823-28fd45b6b48a"/>
+				<text><![CDATA["Número de certificado :"]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="50" width="231" height="21" forecolor="#AAADAF" uuid="2183ae4b-887a-414d-860e-683b8f02a3d1"/>
+				<textFieldExpression><![CDATA["Url del certificado: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="71" width="161" height="21" uuid="9cadccf1-446a-498f-a9ff-a96621adb38d"/>
+				<textFieldExpression><![CDATA["Número de referencia: "]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="25" y="30" width="180" height="67" uuid="1df5d826-f6ac-4311-bcb5-8db9c2afcb05"/>
+				<imageExpression><![CDATA[$P{LOGO_UDEMY}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="25" y="-3" width="230" height="30" forecolor="#6A6F73" uuid="184691b9-580a-4d79-87bd-7844701f1d4f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado de finalización]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="350" splitType="Immediate">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="25" y="161" width="181" height="28" uuid="66255fac-b0ba-458d-80e4-193b2b9dd9cf"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Instructores:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="0" width="767" height="160" uuid="b27ab5e1-c940-4b4d-9523-24b89c54bbc8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="53" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Master Spring Data JPA with Hibernate: E-Commerce Project]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="115" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="25" y="60" width="120" height="34" uuid="9fc846be-76dc-4d71-9df9-77dd2f52811c"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Duración]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="30" width="100" height="30" uuid="7ca598b8-ccab-45ba-aebd-387166bcd4c9"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Fecha ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="25" y="0" width="255" height="31" uuid="872afc13-af8a-4070-9613-aca56cc49b9a"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NAME_STUDENT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
