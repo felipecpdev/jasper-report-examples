@@ -2,7 +2,6 @@ package com.felipecpdev.jasperreportexamples.controllers;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -20,14 +19,14 @@ import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/v1/report")
-public class CertificateController {
+public class ReportController {
 
     private static final String CLASSPATH = "classpath:";
     private static final String TEMPLATE_REPORTS = "templates/reports/";
 
     private final ResourceLoader resourceLoader;
 
-    public CertificateController(ResourceLoader resourceLoader) {
+    public ReportController(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
     }
 
